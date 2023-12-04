@@ -125,20 +125,42 @@ fn setup_menu(mut commands: Commands, textures: Res<TextureAssets>) {
                             ..default()
                         },
                     ));
-                    parent.spawn(ImageBundle {
-                        image: textures.bevy.clone().into(),
-                        style: Style {
-                            width: Val::Px(32.),
-                            ..default()
-                        },
-                        ..default()
-                    });
                 });
+            children
+            .spawn((
+                ButtonBundle {
+                    style: Style {
+                        width: Val::Px(200.0),
+                        height: Val::Px(50.0),
+                        justify_content: JustifyContent::SpaceAround,
+                        align_items: AlignItems::Center,
+                        padding: UiRect::all(Val::Px(5.)),
+                        ..Default::default()
+                    },
+                    background_color: Color::NONE.into(),
+                    ..Default::default()
+                },
+                ButtonColors {
+                    normal: Color::NONE,
+                    ..default()
+                },
+                OpenLink("https://itch.io/jam/bevy-jam-4"),
+            ))
+            .with_children(|parent| {
+                parent.spawn(TextBundle::from_section(
+                    "Submission to Bevy Jam #4",
+                    TextStyle {
+                        font_size: 15.0,
+                        color: Color::rgb(0.9, 0.9, 0.9),
+                        ..default()
+                    },
+                ));
+            });
             children
                 .spawn((
                     ButtonBundle {
                         style: Style {
-                            width: Val::Px(170.0),
+                            width: Val::Px(200.0),
                             height: Val::Px(50.0),
                             justify_content: JustifyContent::SpaceAround,
                             align_items: AlignItems::Center,
@@ -152,25 +174,17 @@ fn setup_menu(mut commands: Commands, textures: Res<TextureAssets>) {
                         normal: Color::NONE,
                         hovered: Color::rgb(0.25, 0.25, 0.25),
                     },
-                    OpenLink("https://github.com/NiklasEi/bevy_game_template"),
+                    OpenLink("https://github.com/NigroSpider/bevy-jam-4"),
                 ))
                 .with_children(|parent| {
                     parent.spawn(TextBundle::from_section(
-                        "Open source",
+                        "Open Source on Github",
                         TextStyle {
                             font_size: 15.0,
                             color: Color::rgb(0.9, 0.9, 0.9),
                             ..default()
                         },
                     ));
-                    parent.spawn(ImageBundle {
-                        image: textures.github.clone().into(),
-                        style: Style {
-                            width: Val::Px(32.),
-                            ..default()
-                        },
-                        ..default()
-                    });
                 });
         });
 }
